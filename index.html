@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulasi CPU Scheduling</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Simulasi CPU Scheduling</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Proses</th>
+        <th>Arrival Time (ms)</th>
+        <th>Burst Time (ms)</th>
+        <th>Prioritas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>P1</td><td>0</td><td>10</td><td>3</td></tr>
+      <tr><td>P2</td><td>2</td><td>5</td><td>1</td></tr>
+      <tr><td>P3</td><td>4</td><td>8</td><td>4</td></tr>
+      <tr><td>P4</td><td>6</td><td>3</td><td>2</td></tr>
+      <tr><td>P5</td><td>8</td><td>6</td><td>5</td></tr>
+    </tbody>
+  </table>
+  <div class="btn-container">
+    <p>Pilih jenis simulasi:</p>
+    <button onclick="startSimulation('fcfs')">First Come First Serve</button>
+    <button onclick="startSimulation('sjf')">Shortest Job First</button>
+  </div>
+
+  <div id="simulation" class="hidden">
+    <h2 id="judulSimulasi"></h2>
+
+    <div class="label">Schedule Sebelum (urutan proses)</div>
+    <div id="beforeSchedule" class="queue"></div>
+
+    <div class="label">CPU Berjalan (animasi)</div>
+    <div id="cpuAnimation" class="anim"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
