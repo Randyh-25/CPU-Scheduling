@@ -1,5 +1,6 @@
-// Tambahkan elemen baru ke HTML secara dinamis
-// Gantilah script.js lama dengan versi yang telah ditingkatkan berikut
+// Randy Hendriyawan
+// 122140171
+// Script animasi
 
 const processes = [
   { name: 'P1', arrival: 0, burst: 10, priority: 3 },
@@ -14,7 +15,8 @@ function startSimulation(type) {
   const beforeDiv = document.getElementById('beforeSchedule');
   const animDiv = document.getElementById('cpuAnimation');
   const title = document.getElementById('judulSimulasi');
-
+// Randy Hendriyawan
+// 122140171
   let ganttChart = document.getElementById('ganttChart');
   if (!ganttChart) {
     ganttChart = document.createElement('div');
@@ -23,7 +25,8 @@ function startSimulation(type) {
     simDiv.appendChild(ganttChart);
   }
   ganttChart.innerHTML = '';
-
+// Randy Hendriyawan
+// 122140171
   let resultTable = document.getElementById('resultTable');
   if (!resultTable) {
     resultTable = document.createElement('table');
@@ -37,7 +40,8 @@ function startSimulation(type) {
   animDiv.innerHTML = "";
 
   let queue = [...processes];
-
+// Randy Hendriyawan
+// 122140171
   if (type === 'fcfs') {
     title.textContent = "Simulasi FCFS";
     queue.sort((a, b) => a.arrival - b.arrival);
@@ -48,7 +52,8 @@ function startSimulation(type) {
 
   let currentTime = 0;
   const results = [];
-
+// Randy Hendriyawan
+// 122140171
   // Masukkan ke ready queue satu per satu sebelum mulai animasi CPU
   let delay = 0;
   queue.forEach((p, index) => {
@@ -60,7 +65,8 @@ function startSimulation(type) {
     }, delay);
     delay += 400;
   });
-
+// Randy Hendriyawan
+// 122140171
   // Mulai CPU Animation setelah ready queue selesai muncul
   setTimeout(() => {
     let totalDelay = 0;
@@ -77,7 +83,8 @@ function startSimulation(type) {
         waitingTime,
         turnaroundTime,
       });
-
+// Randy Hendriyawan
+// 122140171
       setTimeout(() => {
         const processContainer = document.createElement('div');
         processContainer.style.marginBottom = '20px';
@@ -94,7 +101,8 @@ function startSimulation(type) {
         processContainer.appendChild(label);
         processContainer.appendChild(dotContainer);
         animDiv.appendChild(processContainer);
-
+// Randy Hendriyawan
+// 122140171
         for (let j = 0; j < p.burst; j++) {
           setTimeout(() => {
             const dot = document.createElement('span');
@@ -116,7 +124,8 @@ function startSimulation(type) {
       totalDelay += p.burst * 300 + 600;
       currentTime = completionTime;
     });
-
+// Randy Hendriyawan
+// 122140171
     // Gantt chart & result table
     setTimeout(() => {
       let ganttHTML = '<h3>Gantt Chart</h3><div style="display:flex;justify-content:center;gap:2px;">';
@@ -127,7 +136,8 @@ function startSimulation(type) {
       });
       ganttHTML += '</div>';
       ganttChart.innerHTML = ganttHTML;
-
+// Randy Hendriyawan
+// 122140171
       let tableHTML = '<thead><tr><th>Proses</th><th>Arrival</th><th>Burst</th><th>Start</th><th>Complete</th><th>WT</th><th>TAT</th></tr></thead><tbody>';
       let totalWT = 0, totalTAT = 0;
       results.forEach(p => {
