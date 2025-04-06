@@ -19,14 +19,14 @@ const processes = [
     let queue = [...processes];
 
     if (type === 'fcfs') {
-      title.textContent = "Simulasi FCFS (Permisalan: Warnet)";
+      title.textContent = "Simulasi FCFS";
       queue.sort((a, b) => a.arrival - b.arrival);
     } else if (type === 'sjf') {
-      title.textContent = "Simulasi SJF (Permisalan: Tukang Fotokopi)";
+      title.textContent = "Simulasi SJF";
       queue.sort((a, b) => a.burst - b.burst);
     }
 
-    // Tampilkan urutan awal
+    // Urutan awal
     queue.forEach(p => {
       const el = document.createElement('div');
       el.className = `process ${p.name}`;
@@ -34,7 +34,7 @@ const processes = [
       beforeDiv.appendChild(el);
     });
 
-    // Animasikan dengan titik-titik
+    // Animasikan titik-titik
     let totalDelay = 0;
 
     queue.forEach((p) => {
@@ -66,6 +66,6 @@ const processes = [
         }
       }, totalDelay);
 
-      totalDelay += p.burst * 300 + 600; // durasi titik + jeda antar proses
+      totalDelay += p.burst * 300 + 600; //ini durasi titik + jeda antar proses
     });
   }
