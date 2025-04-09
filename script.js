@@ -15,8 +15,7 @@ function startSimulation(type) {
   const beforeDiv = document.getElementById('beforeSchedule');
   const animDiv = document.getElementById('cpuAnimation');
   const title = document.getElementById('judulSimulasi');
-// Randy Hendriyawan
-// 122140171
+
   let ganttChart = document.getElementById('ganttChart');
   if (!ganttChart) {
     ganttChart = document.createElement('div');
@@ -25,8 +24,7 @@ function startSimulation(type) {
     simDiv.appendChild(ganttChart);
   }
   ganttChart.innerHTML = '';
-// Randy Hendriyawan
-// 122140171
+
   let resultTable = document.getElementById('resultTable');
   if (!resultTable) {
     resultTable = document.createElement('table');
@@ -40,35 +38,52 @@ function startSimulation(type) {
   animDiv.innerHTML = "";
 
   let queue = [...processes];
-// Randy Hendriyawan
-// 122140171
+  let currentTime = 0;
+  const results = [];
+
   if (type === 'fcfs') {
     title.textContent = "Simulasi FCFS";
     queue.sort((a, b) => a.arrival - b.arrival);
   } else if (type === 'sjf') {
     title.textContent = "Simulasi SJF";
     queue.sort((a, b) => a.burst - b.burst);
+  } else if (type === 'sjfnp') {
+    title.textContent = "Simulasi SJF Non-Preemptive";
+    queue = [];
+    let remaining = [...processes];
+    currentTime = 0;
+
+    while (remaining.length > 0) {
+      const available = remaining.filter(p => p.arrival <= currentTime);
+      if (available.length === 0) {
+        currentTime = remaining[0].arrival;
+        continue;
+      }
+      available.sort((a, b) => a.burst - b.burst);
+      const next = available[0];
+      remaining = remaining.filter(p => p !== next);
+      queue.push(next);
+      currentTime += next.burst;
+    }
   }
 
-  let currentTime = 0;
-  const results = [];
-// Randy Hendriyawan
-// 122140171
-  // Masukkan ke ready queue satu per satu sebelum mulai animasi CPU
+  // Tampilkan Ready Queue sesuai urutan eksekusi
   let delay = 0;
-  queue.forEach((p, index) => {
-    setTimeout(() => {
-      const el = document.createElement('div');
-      el.className = `process ${p.name}`;
-      el.textContent = `${p.name} (${p.burst}ms)`;
-      beforeDiv.appendChild(el);
-    }, delay);
-    delay += 400;
-  });
-// Randy Hendriyawan
-// 122140171
-  // Mulai CPU Animation setelah ready queue selesai muncul
   setTimeout(() => {
+    
+    queue.forEach((p, index) => {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = `process ${p.name}`;
+        el.textContent = `${p.name} (${p.burst}ms)`;
+        beforeDiv.appendChild(el);
+      }, index * 400);
+    });
+  }, delay);
+
+  // Simulasi CPU Animation
+  setTimeout(() => {
+    currentTime = 0;
     let totalDelay = 0;
     queue.forEach((p, i) => {
       const startTime = Math.max(currentTime, p.arrival);
@@ -83,8 +98,7 @@ function startSimulation(type) {
         waitingTime,
         turnaroundTime,
       });
-// Randy Hendriyawan
-// 122140171
+
       setTimeout(() => {
         const processContainer = document.createElement('div');
         processContainer.style.marginBottom = '20px';
@@ -101,8 +115,7 @@ function startSimulation(type) {
         processContainer.appendChild(label);
         processContainer.appendChild(dotContainer);
         animDiv.appendChild(processContainer);
-// Randy Hendriyawan
-// 122140171
+
         for (let j = 0; j < p.burst; j++) {
           setTimeout(() => {
             const dot = document.createElement('span');
@@ -114,7 +127,6 @@ function startSimulation(type) {
           }, j * 300);
         }
 
-        // Setelah selesai, ubah label
         setTimeout(() => {
           label.textContent = `${p.name} (Selesai)`;
           label.style.color = 'green';
@@ -124,8 +136,7 @@ function startSimulation(type) {
       totalDelay += p.burst * 300 + 600;
       currentTime = completionTime;
     });
-// Randy Hendriyawan
-// 122140171
+
     // Gantt chart & result table
     setTimeout(() => {
       let ganttHTML = '<h3>Gantt Chart</h3><div style="display:flex;justify-content:center;gap:2px;">';
@@ -136,8 +147,7 @@ function startSimulation(type) {
       });
       ganttHTML += '</div>';
       ganttChart.innerHTML = ganttHTML;
-// Randy Hendriyawan
-// 122140171
+
       let tableHTML = '<thead><tr><th>Proses</th><th>Arrival</th><th>Burst</th><th>Start</th><th>Complete</th><th>WT</th><th>TAT</th></tr></thead><tbody>';
       let totalWT = 0, totalTAT = 0;
       results.forEach(p => {
@@ -149,5 +159,5 @@ function startSimulation(type) {
       tableHTML += '</tbody>';
       resultTable.innerHTML = tableHTML;
     }, totalDelay + 500);
-  }, delay + 500);
+  }, delay + 1000);
 }

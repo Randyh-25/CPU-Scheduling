@@ -2,59 +2,60 @@
 <!-- 122140171 -->
  <!-- Animasiiii jadi-jadian -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulasi CPU Scheduling</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>Randy Hendriyawan</h1>
-  <h1>Tugas SO RB | Simulasi CPU Scheduling</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Proses</th>
-        <th>Arrival Time (ms)</th>
-        <th>Burst Time (ms)</th>
-        <th>Prioritas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>P1</td><td>0</td><td>10</td><td>3</td></tr>
-      <tr><td>P2</td><td>2</td><td>5</td><td>1</td></tr>
-      <tr><td>P3</td><td>4</td><td>8</td><td>4</td></tr>
-      <tr><td>P4</td><td>6</td><td>3</td><td>2</td></tr>
-      <tr><td>P5</td><td>8</td><td>6</td><td>5</td></tr>
-    </tbody>
-  </table>
-  <div class="btn-container">
-    <button onclick="startSimulation('fcfs')">Simulasi FCFS</button>
-    <button onclick="startSimulation('sjf')">Simulasi SJF</button>
-  </div>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->
-  <div id="simulation" class="hidden">
-    <h2 id="judulSimulasi"></h2>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->
-    <div class="label">Ready Queue</div>
-    <div id="beforeSchedule" class="queue"></div>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->
-    <div class="label">CPU Execution</div>
-    <div id="cpuAnimation" class="anim"></div>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->   
-  </div>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->
-  <script src="script.js"></script>
-</body>
-</html>
-<!-- Randy Hendriyawan -->
-<!-- 122140171 -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Simulasi CPU Scheduling</title>
+   <link rel="stylesheet" href="style.css" />
+ </head>
+ <body>
+   <h1>Randy Hendriyawan</h1>
+   <h1>Tugas SO RB | Simulasi CPU Scheduling</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Proses</th>
+         <th>Arrival Time (ms)</th>
+         <th>Burst Time (ms)</th>
+         <th>Prioritas</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr><td>P1</td><td>0</td><td>10</td><td>3</td></tr>
+       <tr><td>P2</td><td>2</td><td>5</td><td>1</td></tr>
+       <tr><td>P3</td><td>4</td><td>8</td><td>4</td></tr>
+       <tr><td>P4</td><td>6</td><td>3</td><td>2</td></tr>
+       <tr><td>P5</td><td>8</td><td>6</td><td>5</td></tr>
+     </tbody>
+   </table>
+   <div class="btn-container">
+     <button onclick="startSimulation('fcfs')">Simulasi FCFS</button>
+     <button onclick="startSimulation('sjf')">Simulasi SJF</button>
+     <button onclick="startSimulation('sjfnp')">Simulasi SJF Non-Preemptive</button>
+   </div>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->
+   <div id="simulation" class="hidden">
+     <h2 id="judulSimulasi"></h2>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->
+     <div class="label">Ready Queue</div>
+     <div id="beforeSchedule" class="queue"></div>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->
+     <div class="label">CPU Execution</div>
+     <div id="cpuAnimation" class="anim"></div>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->   
+   </div>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->
+   <script src="script.js"></script>
+ </body>
+ </html>
+ <!-- Randy Hendriyawan -->
+ <!-- 122140171 -->
